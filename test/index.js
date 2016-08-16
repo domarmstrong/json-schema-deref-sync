@@ -330,13 +330,22 @@ describe('json-schema-deref-sync', function () {
       expect(schema).to.deep.equal(expected);
     });
 
-    it('should work with paths of the same name as ref', function () {
-      var input = require('./schemas/notcircularlocalref.json');
-      var expected = require('./schemas/notcircularlocalref.expected.json');
+    it('should work with falsy values in schema', function () {
+      var input = require('./schemas/includesnullvalues.json');
+      var expected = require('./schemas/includesnullvalues.expected.json');
 
       var schema = deref(input);
       expect(schema).to.be.ok;
       expect(schema).to.deep.equal(expected);
     });
+  });
+
+  it('should work with paths of the same name as ref', function () {
+    var input = require('./schemas/notcircularlocalref.json');
+    var expected = require('./schemas/notcircularlocalref.expected.json');
+
+    var schema = deref(input);
+    expect(schema).to.be.ok;
+    expect(schema).to.deep.equal(expected);
   });
 });
